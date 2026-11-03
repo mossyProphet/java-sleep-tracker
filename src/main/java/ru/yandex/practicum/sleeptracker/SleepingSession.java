@@ -12,9 +12,18 @@ public class SleepingSession {
         this.sleepEnd = sleepEnd;
         this.sleepQuality = sleepQuality;
     }
-    public LocalDateTime getSleepStart() {return sleepStart;};
-    public LocalDateTime getSleepEnd() {return sleepEnd;};
-    public SleepQuality getSleepQuality() {return sleepQuality;};
+
+    public LocalDateTime getSleepStart() {
+        return sleepStart;
+    };
+
+    public LocalDateTime getSleepEnd() {
+        return sleepEnd;
+    };
+
+    public SleepQuality getSleepQuality() {
+        return sleepQuality;
+    };
 
     public long durationMinutes(){
         return java.time.Duration.between(sleepStart, sleepEnd).toMinutes();
