@@ -1,7 +1,6 @@
 package ru.yandex.practicum.sleeptracker;
 
 import java.util.List;
-import java.util.OptionalDouble;
 
 public class AvSleepLength implements Function {
     @Override
