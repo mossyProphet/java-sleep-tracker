@@ -15,17 +15,17 @@ public class SleepingSession {
 
     public LocalDateTime getSleepStart() {
         return sleepStart;
-    };
+    }
 
     public LocalDateTime getSleepEnd() {
         return sleepEnd;
-    };
+    }
 
     public SleepQuality getSleepQuality() {
         return sleepQuality;
-    };
+    }
 
-    public long durationMinutes(){
+    public long durationMinutes() {
         return java.time.Duration.between(sleepStart, sleepEnd).toMinutes();
     }
 }
