@@ -12,11 +12,11 @@ public class SleepAnalysisResult<T> {
     public String getDescription() {
         return description;
     }
-    
+
     public T getValue() {
         return value;
     }
-
+    
     @Override
     public String toString() {
         return description + ": " + value;
