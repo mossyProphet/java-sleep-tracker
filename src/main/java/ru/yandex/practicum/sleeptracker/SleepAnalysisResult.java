@@ -16,7 +16,7 @@ public class SleepAnalysisResult<T> {
     public T getValue() {
         return value;
     }
-    
+
     @Override
     public String toString() {
         return description + ": " + value;
