@@ -13,11 +13,11 @@ public class SleepingSession {
         this.sleepQuality = sleepQuality;
     }
 
-    public LocalDateTime getSleepStart() {
+    public LocalDateTime getSleepStart() { //начало сна
         return sleepStart;
     }
 
-    public LocalDateTime getSleepEnd() {
+    public LocalDateTime getSleepEnd() { //конец сна
         return sleepEnd;
     }
 
