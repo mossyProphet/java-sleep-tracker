@@ -25,31 +25,20 @@ public class SleeplessNights implements Function {
         return new SleepAnalysisResult<>("Количество бессонных ночей", sleepless);
     }
 
-    /** Сессия считается ночной, если пересекает [00:00, 06:00] какой-либо ночи. */
-    private boolean isNightSession(SleepingSession s) {
-        LocalDateTime start = s.getSleepStart();
-        LocalDateTime end = s.getSleepEnd();
-        // Ночь, к которой может относиться сессия
-        LocalDate nightDate = nightDateOf(s);
-        LocalDateTime nightStart = nightDate.atStartOfDay();
-        LocalDateTime nightEnd = nightDate.atTime(6, 0);
-        return start.isBefore(nightEnd) && end.isAfter(nightStart);
+    private LocalDate nightDateOf(SleepingSession s) {
+        LocalDate startDate = s.getSleepStart().toLocalDate();
+        LocalDate endDate   = s.getSleepEnd().toLocalDate();
+        if (endDate.isAfter(startDate)) {                            // crossed midnight → night of the wake-up date
+            return endDate;
+        }
+        if (s.getSleepStart().toLocalTime().isBefore(LocalTime.of(6, 0))) {
+            return startDate;                                        // early-morning sleep
+        }
+        return null;                                                 // day sleep — no night
     }
 
-    /** Определяем дату ночи, к которой относится сессия. */
-    private LocalDate nightDateOf(SleepingSession s) {
-        LocalDateTime start = s.getSleepStart();
-        LocalDateTime end = s.getSleepEnd();
-        // Если заснул до 06:00 — это ночь предыдущего дня
-        if (start.toLocalTime().isBefore(LocalTime.of(6, 0))) {
-            return start.toLocalDate().minusDays(1);
-        }
-        // Если заснул вечером и проснулся на следующий день — ночь дня засыпания
-        if (end.toLocalDate().isAfter(start.toLocalDate())) {
-            return start.toLocalDate();
-        }
-        // Иначе (дневной сон) — относим к предыдущей ночи (не будет ночной при проверке)
-        return start.toLocalDate().minusDays(1);
+    private boolean isNightSession(SleepingSession s) {
+        return nightDateOf(s) != null;
     }
 
     /** Общее число ночей в интервале логирования. */

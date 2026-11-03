@@ -6,7 +6,7 @@ import java.util.OptionalDouble;
 public class AvSleepLength implements Function{
     @Override
     public SleepAnalysisResult<?> apply(List<SleepingSession> sessions){
-        OptionalDouble av = sessions.stream().mapToLong(SleepingSession::durationMinutes).average();
+        double av = sessions.stream().mapToLong(SleepingSession::durationMinutes).average().getAsDouble();
         return new SleepAnalysisResult<>("Средняя продолжительность сессии (мин)", av);
     }
 }
