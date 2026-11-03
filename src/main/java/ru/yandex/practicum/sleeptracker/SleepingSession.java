@@ -7,7 +7,7 @@ public class SleepingSession {
     private final LocalDateTime sleepEnd;
     private final SleepQuality sleepQuality;
 
-    public SleepingSession(LocalDateTime sleepStart, LocalDateTime sleepEnd, SleepQuality sleepQuality){
+    public SleepingSession(LocalDateTime sleepStart, LocalDateTime sleepEnd, SleepQuality sleepQuality) {
         this.sleepStart = sleepStart;
         this.sleepEnd = sleepEnd;
         this.sleepQuality = sleepQuality;
